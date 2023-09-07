@@ -17,7 +17,7 @@ class Robot {
 
   // Utility function to check if the placement is within bounds
   private isPlacementValid(x: number, y: number): boolean {
-    return x >= 0 && x <= this.xSize && y >= 0 && y <= this.ySize;
+    return x >= 0 && x <= this.xSize - 1 && y >= 0 && y <= this.ySize - 1;
   }
 
   place(x: number, y: number, direction: string): void {
@@ -102,6 +102,10 @@ class Robot {
 
   getPosition() {
     return { x: this.x, y: this.y, direction: this.direction };
+  }
+
+  getBoardSize() {
+    return { x: this.xSize, y: this.ySize };
   }
 }
 

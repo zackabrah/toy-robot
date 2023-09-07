@@ -3,8 +3,18 @@ import robotController from "./robot-controller";
 
 const robot = new Robot();
 
+const canvas = document.getElementById("game-board") as HTMLCanvasElement;
+const context = canvas.getContext("2d");
+const cellSize = canvas.width / 4;
+
+context!.translate(0, canvas.height);
+context!.scale(1, -1);
+
 export function setupFormEventListener(): void {
   document.addEventListener("DOMContentLoaded", () => {
+    // createTable(robot.)
+    const boardSize = robot.getBoardSize();
+
     const form = document.querySelector("form");
     const turnLeft = document.querySelector("#turn-left");
     const turnRight = document.querySelector("#turn-right");
@@ -59,6 +69,7 @@ export function setupFormEventListener(): void {
 function executeCommand(command: string) {
   robotController(command, robot);
   updateTable();
+  updateRobotPosition();
 }
 
 // Function to update the table with the robot's position
@@ -75,4 +86,67 @@ function updateTable() {
   }
 }
 
+function drawGameBoard() {
+  for (let row = 0; row < 4; row++) {
+    for (let col = 0; col < 4; col++) {
+      // chessboard style checkers
+      if (row % 2 === 0) {
+        if (col % 2 === 0) {
+          context!.fillStyle = "black";
+        } else {
+          context!.fillStyle = "grey";
+        }
+      } else {
+        if (col % 2 === 0) {
+          context!.fillStyle = "grey";
+        } else {
+          context!.fillStyle = "black";
+        }
+      }
+      context!.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+    }
+  }
+}
+
+function drawRobot(x: number, y: number) {
+  const robotSize = cellSize * 0.5;
+  const robotX = x * cellSize + (cellSize - robotSize) / 2;
+  const robotY = y * cellSize + (cellSize - robotSize) / 2;
+
+  context!.fillStyle = "red";
+  context!.fillRect(robotX, robotY, robotSize, robotSize);
+
+  context!.fillStyle = "white";
+
+  const direction = robot.getDirection();
+
+  if (direction === "SOUTH") {
+    context!.fillRect(robotX, robotY, robotSize, robotSize / 3);
+  } else if (direction === "NORTH") {
+    context!.fillRect(
+      robotX,
+      robotY + robotSize - robotSize / 4,
+      robotSize,
+      robotSize / 4
+    );
+  } else if (direction === "EAST") {
+    context!.fillRect(
+      robotX + robotSize - robotSize / 4,
+      robotY,
+      robotSize / 4,
+      robotSize
+    );
+  } else if (direction === "WEST") {
+    context!.fillRect(robotX, robotY, robotSize / 3, robotSize);
+  }
+}
+
+// Call this function to update the robot's position on the canvas
+function updateRobotPosition() {
+  context!.clearRect(0, 0, canvas.width, canvas.height);
+  drawGameBoard();
+  drawRobot(robot.getPosition().x, robot.getPosition().y);
+}
+
 setupFormEventListener();
+updateRobotPosition();
