@@ -1,4 +1,5 @@
-function executeCommand(command: string): string {
+export function executeCommand(command: string): string {
+  let result = "";
   const parts = command.trim().split(" ");
   const commandType = parts[0].toUpperCase();
 
@@ -9,21 +10,24 @@ function executeCommand(command: string): string {
         const x = parseInt(placeArgs[0]);
         const y = parseInt(placeArgs[1]);
         const direction = placeArgs[2];
-        console.log(`place robot at ${x}, ${y}, ${direction}`);
+        result = `placed robot at ${x}, ${y}, facing ${direction}`;
       }
       break;
     case "MOVE":
-      console.log("move robot");
+      result = "moved robot";
       break;
     case "LEFT":
-      console.log("left");
+      result = "turned robot left";
       break;
     case "RIGHT":
-      console.log("right");
+      result = "turned robot right";
       break;
     case "REPORT":
-      console.log("report");
+      result = "robot's current status: x, y, direction";
+      break;
+    default:
+      result = "invalid command";
   }
 
-  return ""; // Default return empty string for non-report commands
+  return result; // Default return empty string for non-report commands
 }
