@@ -1,10 +1,51 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8"/>
-    <title>My First Parcel App</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toy Robot Simulation</title>
   </head>
   <body>
-    <h1>Hello, World!</h1>
+    <h1>Toy Robot Simulation</h1>
+
+    <div class="command-input">
+      <form>
+        <label for="command-input"
+          >Enter a command (e.g., PLACE 0,0,NORTH):</label
+        >
+        <input
+          type="text"
+          id="command-input"
+          name="command"
+          required
+          pattern="^(PLACE [0-4],[0-4],(NORTH|SOUTH|EAST|WEST)|MOVE|LEFT|RIGHT|REPORT)$"
+        />
+        <button type="submit">Execute</button>
+      </form>
+    </div>
+    <script>
+      // JavaScript logic for form submission (e.g., executing the command)
+      document
+        .querySelector("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const commandInput = document.getElementById("command-input");
+          const command = commandInput.value.trim();
+
+          if (
+            command.match(
+              /^(PLACE [0-4],[0-4],(NORTH|SOUTH|EAST|WEST)|MOVE|LEFT|RIGHT|REPORT)$/
+            )
+          ) {
+            // Valid command; you can execute it here
+            executeCommand(command);
+          } else {
+            // Invalid command
+            alert("Invalid command: " + command);
+          }
+        });
+    </script>
+    <script src="main.ts"></script>
   </body>
 </html>
