@@ -58,9 +58,8 @@ Expected output: `3,3,NORTH`
 3. Added primitive input validation to the command input using a HTML5 form and some pattern matching.
 4. Added jest support and wrote some initial tests for our primary script, if this is solid the robot class itself should be trivial.
 5. Introduced the core robot class which is controlled by our main script, adhering to a good separation of concerns pattern. Also wrote unit tests for the robot class. Now that our core scripts are written, I'll wire up the separate components and test the results.
-6. Ran into a strange issue with Parcel complaining
-
-`🚨 Build failed.
-Error: Expected content key de1e4a02ec63c4eb to exist`
-
-A quick google suggested to clear the .parcel-cache and rebuild which worked perfectly :) 7. refactored for better separation of concerns and testability of the main script 8. Taking a quick break :D
+6. Ran into a strange issue with Parcel complaining 🚨 Build failed. Error: Expected content key de1e4a02ec63c4eb to exist. A quick google suggested to clear the .parcel-cache and rebuild which worked perfectly
+7. refactored for better separation of concerns and testability of the main script
+8. Taking a quick break :D
+9. Added additional inputs to move the robot left, right, and forward
+10. That's time, thank you for the challenge! I had fun
