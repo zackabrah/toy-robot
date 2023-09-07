@@ -63,4 +63,4 @@ Expected output: `3,3,NORTH`
 `🚨 Build failed.
 Error: Expected content key de1e4a02ec63c4eb to exist`
 
-A quick google suggested to clear the .parcel-cache and rebuild which worked perfectly :) 7.
+A quick google suggested to clear the .parcel-cache and rebuild which worked perfectly :) 7. refactored for better separation of concerns and testability of the main script 8. Taking a quick break :D
