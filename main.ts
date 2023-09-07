@@ -6,6 +6,31 @@ const robot = new Robot();
 export function setupFormEventListener(): void {
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
+    const turnLeft = document.querySelector("#turn-left");
+    const turnRight = document.querySelector("#turn-right");
+    const moveForward = document.querySelector("#move-forward");
+
+    if (turnLeft) {
+      turnLeft.addEventListener("click", () => {
+        console.info("Turning left");
+        executeCommand("LEFT");
+      });
+    }
+
+    if (turnRight) {
+      turnRight.addEventListener("click", () => {
+        console.info("Turning right");
+        executeCommand("RIGHT");
+      });
+    }
+
+    if (moveForward) {
+      moveForward.addEventListener("click", () => {
+        console.info("Moving forward");
+        executeCommand("MOVE");
+      });
+    }
+
     if (form) {
       form.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -21,8 +46,7 @@ export function setupFormEventListener(): void {
           )
         ) {
           // Valid command; you can execute it here
-          robotController(command, robot);
-          updateTable();
+          executeCommand(command);
         } else {
           // Invalid command
           alert("Invalid command: " + command);
@@ -30,6 +54,11 @@ export function setupFormEventListener(): void {
       });
     }
   });
+}
+
+function executeCommand(command: string) {
+  robotController(command, robot);
+  updateTable();
 }
 
 // Function to update the table with the robot's position
