@@ -23,29 +23,6 @@
         <button type="submit">Execute</button>
       </form>
     </div>
-    <script>
-      // JavaScript logic for form submission (e.g., executing the command)
-      document
-        .querySelector("form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-
-          const commandInput = document.getElementById("command-input");
-          const command = commandInput.value.trim();
-
-          if (
-            command.match(
-              /^(PLACE [0-4],[0-4],(NORTH|SOUTH|EAST|WEST)|MOVE|LEFT|RIGHT|REPORT)$/
-            )
-          ) {
-            // Valid command; you can execute it here
-            executeCommand(command);
-          } else {
-            // Invalid command
-            alert("Invalid command: " + command);
-          }
-        });
-    </script>
-    <script src="main.ts"></script>
+    <script src="main.ts" type="module"></script>
   </body>
 </html>

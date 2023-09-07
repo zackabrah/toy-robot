@@ -84,6 +84,10 @@ class Robot {
     }
   }
 
+  isFacing(): string {
+    return this.direction;
+  }
+
   report(): string {
     // Implement the logic for reporting the robot's position
     if (this.x == -1 && this.y == -1) return ""; // return empty string for "unplaced" robot
