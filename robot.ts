@@ -3,15 +3,21 @@ class Robot {
   private y: number;
   private direction: string;
 
-  constructor() {
-    this.x = 0;
-    this.y = 0;
-    this.direction = "NORTH";
+  private xSize: number;
+  private ySize: number;
+
+  constructor(x = 0, y = 0, direction = "NORTH", xSize = 4, ySize = 4) {
+    this.x = x;
+    this.y = y;
+    this.direction = direction;
+
+    this.xSize = xSize;
+    this.ySize = ySize;
   }
 
   // Utility function to check if the placement is within bounds
   private isPlacementValid(x: number, y: number): boolean {
-    return x >= 0 && x <= 4 && y >= 0 && y <= 4;
+    return x >= 0 && x <= this.xSize && y >= 0 && y <= this.ySize;
   }
 
   place(x: number, y: number, direction: string): void {
