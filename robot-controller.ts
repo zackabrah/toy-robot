@@ -1,8 +1,6 @@
 import Robot from "./robot";
 
-export const robot = new Robot();
-
-export function executeCommand(command: string): string {
+export default function robotController(command: string, robot: Robot): string {
   let result = "";
   const parts = command.trim().split(" ");
   const commandType = parts[0].toUpperCase();
@@ -24,11 +22,11 @@ export function executeCommand(command: string): string {
       break;
     case "LEFT":
       robot.left();
-      console.info(`Robot turned left, now facing: ${robot.isFacing()}`);
+      console.info(`Robot turned left, now facing: ${robot.getDirection()}`);
       break;
     case "RIGHT":
       robot.right();
-      console.info(`Robot turned right, now facing: ${robot.isFacing()}`);
+      console.info(`Robot turned right, now facing: ${robot.getDirection()}`);
       break;
     case "REPORT":
       result = `Robot's current status: ${robot.report()}`;

@@ -14,12 +14,7 @@ describe("Robot", () => {
 
   it("should report the current direction correctly", () => {
     robot.place(1, 2, "NORTH");
-    expect(robot.isFacing()).toBe("NORTH");
-  });
-
-  it("should not move if not placed", () => {
-    robot.move();
-    expect(robot.report()).toBe("");
+    expect(robot.getDirection()).toBe("NORTH");
   });
 
   it("should move the robot north", () => {

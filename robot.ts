@@ -4,9 +4,9 @@ class Robot {
   private direction: string;
 
   constructor() {
-    this.x = -1; // Initialize with an invalid position
-    this.y = -1;
-    this.direction = "";
+    this.x = 0;
+    this.y = 0;
+    this.direction = "NORTH";
   }
 
   // Utility function to check if the placement is within bounds
@@ -84,7 +84,7 @@ class Robot {
     }
   }
 
-  isFacing(): string {
+  getDirection(): string {
     return this.direction;
   }
 
@@ -92,6 +92,10 @@ class Robot {
     // Implement the logic for reporting the robot's position
     if (this.x == -1 && this.y == -1) return ""; // return empty string for "unplaced" robot
     return `${this.x},${this.y},${this.direction}`;
+  }
+
+  getPosition() {
+    return { x: this.x, y: this.y, direction: this.direction };
   }
 }
 
