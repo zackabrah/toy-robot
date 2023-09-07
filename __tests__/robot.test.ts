@@ -4,7 +4,7 @@ describe("Robot", () => {
   let robot: Robot;
 
   beforeEach(() => {
-    robot = new Robot();
+    robot = new Robot(0, 0, "NORTH", 5, 5);
   });
 
   it("should place the robot correctly", () => {

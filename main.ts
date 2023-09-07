@@ -1,11 +1,13 @@
 import Robot from "./robot";
 import robotController from "./robot-controller";
 
-const robot = new Robot();
+const boardSize = 5;
+
+const robot = new Robot(0, 0, "NORTH", boardSize, boardSize);
 
 const canvas = document.getElementById("game-board") as HTMLCanvasElement;
 const context = canvas.getContext("2d");
-const cellSize = canvas.width / 4;
+const cellSize = canvas.width / boardSize;
 
 context!.translate(0, canvas.height);
 context!.scale(1, -1);
@@ -87,8 +89,8 @@ function updateTable() {
 }
 
 function drawGameBoard() {
-  for (let row = 0; row < 4; row++) {
-    for (let col = 0; col < 4; col++) {
+  for (let row = 0; row < boardSize; row++) {
+    for (let col = 0; col < boardSize; col++) {
       // chessboard style checkers
       if (row % 2 === 0) {
         if (col % 2 === 0) {
